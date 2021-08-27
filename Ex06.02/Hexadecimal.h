@@ -8,6 +8,7 @@
 
 /**
  * @brief Print the hexadecimal representation of a variable.
+ * 
  * @param address the address of the variable in memory
  * @param size the size, in bytes, of the variable
 */

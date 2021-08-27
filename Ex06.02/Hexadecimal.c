@@ -3,8 +3,9 @@
 
 void PrintHex(void *address, size_t size)
 {
-    for (size_t count = 0; count < size; count++) {
-        printf("%02x \n", *((unsigned char *) address + count));
+    for (size_t count = 0; count < size; count++)
+    {
+        printf("%.2x \n", *((unsigned char *) address + count));
     }
     printf("\n");
 }
