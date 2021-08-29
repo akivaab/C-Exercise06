@@ -13,7 +13,6 @@ int main(void)
     printf("%zu\n", GetListSize(list));
     printf("%d\n", val);
     FreeList(list);
-    printf("%zu\n", GetListSize(list));
     printf("%d\n", GetLastLinkedListError());
 
     return 0;

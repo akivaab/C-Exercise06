@@ -31,6 +31,7 @@ void FreeList(List *list)
                 node = nextNode;
             }
         }
+        //list->head = NULL;
         free(list);
     }
     else
