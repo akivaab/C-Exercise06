@@ -1,3 +1,4 @@
+#pragma warning (disable : 5045)
 #include <stdio.h>
 #include "Hexadecimal.h"
 
