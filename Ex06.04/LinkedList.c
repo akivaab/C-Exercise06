@@ -1,7 +1,6 @@
 #include <malloc.h>
+#include <stdio.h>
 #include "LinkedList.h"
-
-static int g_lastLinkedListError = 0;
 
 List *CreateList(void)
 {
@@ -12,7 +11,7 @@ List *CreateList(void)
     }
     else
     {
-        g_lastLinkedListError += 1;
+        printf_s("ERROR: No memory available\n");
     }
     return list;
 }
@@ -31,33 +30,31 @@ void FreeList(List *list)
                 node = nextNode;
             }
         }
-        //list->head = NULL;
         free(list);
     }
     else
     {
-        g_lastLinkedListError += 1;
+        printf_s("ERROR: Passed null parameter\n");
     }
 }
 
 size_t GetListSize(List *list)
 {
+    size_t counter = 0;
     if (list)
     {
-        size_t counter = 0;
         Node *node = GetListHead(list);
         while (node)
         {
             ++counter;
             node = GetNextNode(node);
         }
-        return counter;
     }
     else
     {
-        g_lastLinkedListError += 1;
-        return 0;
+        printf_s("ERROR: Passed null parameter\n");
     }
+    return counter;
 }
 
 Node *GetListHead(List *list)
@@ -68,7 +65,7 @@ Node *GetListHead(List *list)
     }
     else
     {
-        g_lastLinkedListError += 1;
+        printf_s("ERROR: Passed null parameter\n");
         return NULL;
     }
 }
@@ -81,7 +78,7 @@ Node *GetNextNode(Node *currentNode)
     }
     else
     {
-        g_lastLinkedListError += 1;
+        printf_s("ERROR: Passed null parameter\n");
         return NULL;
     }
 }
@@ -94,7 +91,7 @@ ListDataType GetValue(Node *node)
     }
     else
     {
-        g_lastLinkedListError += 1;
+        printf_s("ERROR: Passed null parameter\n");
         return 0;
     }
 }
@@ -115,13 +112,13 @@ Node *Insert(Node *after, ListDataType newValue)
         }
         else
         {
-            g_lastLinkedListError += 1;
+            printf_s("ERROR: No memory available\n");
         }
         return newNode;
     }
     else
     {
-        g_lastLinkedListError += 1;
+        printf_s("ERROR: Passed null parameter\n");
         return NULL;
     }
 }
@@ -140,13 +137,13 @@ Node *PushFront(List *list, ListDataType newValue)
         }
         else
         {
-            g_lastLinkedListError += 1;
+            printf_s("ERROR: No memory available\n");
         }
         return newNode;
     }
     else
     {
-        g_lastLinkedListError += 1;
+        printf_s("ERROR: Passed null parameter\n");
         return NULL;
     }
 }
@@ -182,13 +179,13 @@ Node *PushBack(List *list, ListDataType newValue)
         }
         else
         {
-            g_lastLinkedListError += 1;
+            printf_s("ERROR: No memory available\n");
         }
         return newNode;
     }
     else
     {
-        g_lastLinkedListError += 1;
+        printf_s("ERROR: Passed null parameter\n");
         return NULL;
     }
 }
@@ -206,13 +203,13 @@ ListDataType PopFront(List *list)
         }
         else
         {
-            g_lastLinkedListError += 1;
+            printf_s("ERROR: List is empty\n");
             return 0;
         }
     }
     else
     {
-        g_lastLinkedListError += 1;
+        printf_s("ERROR: Passed null parameter\n");
         return 0;
     }
 }
@@ -235,13 +232,13 @@ ListDataType PopBack(List *list)
         }
         else
         {
-            g_lastLinkedListError += 1;
+            printf_s("ERROR: List is empty\n");
             return 0;
         }
     }
     else
     {
-        g_lastLinkedListError += 1;
+        printf_s("ERROR: Passed null parameter\n");
         return 0;
     }
 }
@@ -250,7 +247,7 @@ void DeleteNode(List *list, Node *target)
 {
     if (!list || !target)
     {
-        g_lastLinkedListError += 1;
+        printf_s("ERROR: Passed null parameter\n");
         return;
     }
 
@@ -293,15 +290,11 @@ Node *DeleteValue(List *list, ListDataType value)
                 nodeWithValue->next->previous = nodeWithValue->previous;
             }
         }
-        else
-        {
-            g_lastLinkedListError += 1;
-        }
         return nodeWithValue;
     }
     else
     {
-        g_lastLinkedListError += 1;
+        printf_s("ERROR: Passed null parameter\n");
         return NULL;
     }
 }
@@ -320,18 +313,13 @@ Node *Find(List *list, ListDataType value)
         }
         else
         {
-            g_lastLinkedListError += 1;
+            printf_s("ERROR: List is empty\n");
         }
         return node;
     }
     else
     {
-        g_lastLinkedListError += 1;
+        printf_s("ERROR: Passed null parameter\n");
         return NULL;
     }
-}
-
-int GetLastLinkedListError(void)
-{
-    return g_lastLinkedListError;
 }

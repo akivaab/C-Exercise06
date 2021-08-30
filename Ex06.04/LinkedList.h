@@ -14,12 +14,11 @@ typedef int ListDataType;
 /**
  * @brief Representation of a node, contains a value, and pointers to the nodes before and after it in the list.
 */
-typedef struct Node_t Node;
 typedef struct Node_t
 {
     ListDataType val;
-    Node *next;
-    Node *previous;
+    struct Node_t *next;
+    struct Node_t *previous;
 } Node;
 
 /**
@@ -155,7 +154,5 @@ Node *DeleteValue(List *list, ListDataType value);
  * @return the node that has this value
 */
 Node *Find(List * list, ListDataType value);
-
-int GetLastLinkedListError(void);
 
 #endif
